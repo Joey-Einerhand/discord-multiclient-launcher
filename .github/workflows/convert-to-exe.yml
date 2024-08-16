@@ -1,0 +1,32 @@
+name: Convert Powershell to EXE
+run-name: Powershell to EXE
+on:
+    push:
+        branches:
+            - master
+permissions:
+    contents: write
+jobs:
+  convert-to-exe:
+    runs-on: windows-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Install PS2EXE
+      shell: powershell
+      run: Install-Module -Name ps2exe -Force -Scope CurrentUser
+      
+    - name: Convert to exe
+      shell: powershell
+      run: Invoke-ps2exe .\discord-multiinstance.ps1 .\discord-multiinstance.exe
+        
+    - name: Upload to GitHub Release
+      uses: ncipollo/release-action@v1
+      with:
+        artifacts: 
+          discord-multiinstance.exe
+          discord-multiinstance.ps1
+        token: ${{ secrets.GITHUB_TOKEN }}
+        tag: ${{ github.ref_name }}
+        name: "Release ${{ github.ref_name }}"
