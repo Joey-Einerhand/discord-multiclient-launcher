@@ -12,6 +12,10 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v3
+      
+    - name: Get Short Commit Hash
+      id: vars
+      run: echo "::set-output name=short_commit::$(git rev-parse --short HEAD)"
 
     - name: Install PS2EXE
       shell: powershell
@@ -28,5 +32,5 @@ jobs:
           discord-multiinstance.exe,
           discord-multiinstance.ps1
         token: ${{ secrets.GITHUB_TOKEN }}
-        tag: ${{ github.ref_name }}
-        name: "Release ${{ github.ref_name }}"
+        tag: ${{ steps.vars.outputs.short_commit }}
+        name: "Release ${{ steps.vars.outputs.short_commit }}"
