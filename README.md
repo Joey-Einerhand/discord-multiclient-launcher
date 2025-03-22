@@ -20,3 +20,7 @@ It doesn't work out of the box. I didn't create this for Linux or MacOS. However
 2. Edit the contents of `discord-multiinstance.ps1`. On line 9, replace `$env:LOCALAPPDATA` with the path to your equivalent of the Discord folder in Windows' `DISKLETTER:\Users\USERNAME\AppData\Local\Discord`. The Discord folder should have sub-folders like `app-VERSION`, for example `app-1.0.9045`, or `app-1.0.9157`, etc.
 3. Run the script
 
+### Auto-login
+If you have two discord accounts and want to automatically log into both, do the following:
+1. Main account: For this account, launch discord normally (without multiinstance.exe) and login. Each time you open discord normally, your main account should automatically be logged in.
+2. Alt account: Log into [discord web](https://discord.com/login) with your alt account. Afterwards, launch multiinstance.exe. This opens a tab in your browser and automatically logs into the discord client launched by multiinstance.exe
