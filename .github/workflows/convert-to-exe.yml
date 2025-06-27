@@ -23,7 +23,7 @@ jobs:
       
     - name: Convert to exe
       shell: powershell
-      run: Invoke-ps2exe .\discord-multiinstance.ps1 .\discord-multiinstance.exe
+      run: Invoke-ps2exe .\discord-multiinstance.ps1 .\discord-multiinstance.exe -iconFile dmc-icon.ico
         
     - name: Upload to GitHub Release
       uses: ncipollo/release-action@v1
